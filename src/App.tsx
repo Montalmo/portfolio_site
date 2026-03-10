@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import FigmaSketchAnimation from './components/FigmaSketchAnimation'
 import ScrollAnimationBlock from './components/ScrollAnimationBlock'
@@ -98,8 +98,33 @@ const projects = [
 
 const Counter: React.FC<CounterProps> = ({ start = 0, end, duration = 2000, suffix = "" }) => {
   const [count, setCount] = useState(start);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef<HTMLSpanElement>(null);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
+    const counterElement = counterRef.current;
+    if (!counterElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimatedRef.current) {
+            hasAnimatedRef.current = true;
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 1 }
+    );
+
+    observer.observe(counterElement);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     let startTime: number | null = null;
     let animationFrame: number;
 
@@ -107,8 +132,6 @@ const Counter: React.FC<CounterProps> = ({ start = 0, end, duration = 2000, suff
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / duration, 1);
-
-      // Calculate current value based on start and end
       const currentValue = start + (end - start) * percentage;
       setCount(Math.floor(currentValue));
 
@@ -119,10 +142,10 @@ const Counter: React.FC<CounterProps> = ({ start = 0, end, duration = 2000, suff
 
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [start, end, duration]);
+  }, [isVisible, start, end, duration]);
 
   return (
-    <span className="tabular-nums inline-flex items-center justify-center" style={{ minWidth: '4ch' }}>
+    <span ref={counterRef} className="tabular-nums inline-flex items-center justify-center" style={{ minWidth: '4ch' }}>
       {count}{suffix}
     </span>
   );
@@ -267,34 +290,32 @@ function App() {
                       </div>
 
                       {/* Numbers Block */}
-                      <ScrollAnimationBlock delay={0.3}>
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
-                          <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                            <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
-                              <Counter end={9} suffix="+" />
-                            </p>
-                            <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Років досвіду</p>
-                          </div>
-                          <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                            <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
-                              <Counter end={50} suffix="+" />
-                            </p>
-                            <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Проєктів</p>
-                          </div>
-                          <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                            <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
-                              <Counter start={100} end={0} suffix="%" />
-                            </p>
-                            <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Хаосу</p>
-                          </div>
-                          <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                            <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
-                              <Counter end={100} suffix="%" />
-                            </p>
-                            <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Якість</p>
-                          </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
+                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                            <Counter end={9} suffix="+" />
+                          </p>
+                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Років досвіду</p>
                         </div>
-                      </ScrollAnimationBlock>
+                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                            <Counter end={50} suffix="+" />
+                          </p>
+                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Проєктів</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                            <Counter start={100} end={0} suffix="%" />
+                          </p>
+                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Хаосу</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                            <Counter end={100} suffix="%" />
+                          </p>
+                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Якість</p>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Expertise Cards — horizontal row of 4 below Philosophy+Stats */}

@@ -139,7 +139,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                     </div>
                 </header>
 
-                <main className="flex-1 w-full flex flex-col items-center justify-center pt-20">
+                <main className="flex-1 w-full flex flex-col items-center justify-center">
                     {/* Hero Section - Project Cover */}
                     <section className="relative w-full">
                         {/* Cover Image */}
@@ -231,12 +231,12 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                     {/* Navigation Buttons */}
                     <section className="relative w-full px-6 md:px-12 py-8 pb-24">
                         <div className="max-w-[1240px] mx-auto">
-                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-between items-stretch sm:items-center">
+                            <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 justify-between items-stretch sm:items-center">
                                 {/* Previous Case Button */}
                                 {prevCase ? (
                                     <button
                                         onClick={() => onNavigate?.(prevCase.id)}
-                                        className="group flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full h-14 px-6 border border-white/10 bg-white/5 text-slate-300 text-base font-bold transition-all hover:bg-white/10 hover:text-white hover:border-white/20"
+                                        className="group flex cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-5 border border-white/10 bg-white/5 text-slate-300 text-sm font-bold transition-all hover:bg-white/10 hover:text-white hover:border-white/20 w-full sm:w-auto sm:max-w-[200px]"
                                     >
                                         <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
                                         <span className="truncate">Попередній кейс</span>
@@ -249,7 +249,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                                 {nextCase ? (
                                     <button
                                         onClick={() => onNavigate?.(nextCase.id)}
-                                        className="group flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full h-14 px-6 bg-violet-600 text-white text-base font-bold transition-all hover:scale-[1.02] hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+                                        className="group flex cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-5 bg-violet-600 text-white text-sm font-bold transition-all hover:scale-[1.02] hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)] w-full sm:w-auto sm:max-w-[200px]"
                                     >
                                         <span className="truncate">Наступний кейс</span>
                                         <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
