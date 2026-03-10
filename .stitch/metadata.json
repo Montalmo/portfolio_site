@@ -1,0 +1,20 @@
+{
+  "name": "projects/10409826675852984074",
+  "projectId": "10409826675852984074",
+  "title": "UX Designer Portfolio",
+  "visibility": "PRIVATE",
+  "createTime": "2026-03-07T16:26:31.065980Z",
+  "updateTime": "2026-03-07T16:26:31.065980Z",
+  "projectType": "PROJECT_DESIGN",
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+    "colorMode": "DARK",
+    "font": "INTER",
+    "roundness": "ROUND_EIGHT"
+  },
+  "screens": {},
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

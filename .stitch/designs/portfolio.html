@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="uk"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8B5CF6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .project-card:hover {
+            border-color: #8B5CF6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative min-h-screen w-full flex flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="flex items-center justify-between border-b border-slate-800 px-6 py-4 lg:px-20">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">UI/UX Portfolio</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Проєкти</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Про мене</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Контакти</a>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-sm font-bold transition-all">
+                    Зв'язатися
+                </button>
+</nav>
+<button class="md:hidden text-slate-100">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:px-20">
+<!-- Hero Section -->
+<div class="mb-16">
+<h1 class="text-5xl lg:text-7xl font-black mb-4 tracking-tighter">Мої проєкти</h1>
+<p class="text-slate-400 text-lg lg:text-xl max-w-2xl font-normal">
+                    Добірка найкращих рішень для бізнесу та користувачів
+                </p>
+</div>
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+<!-- Project Card 1 -->
+<div class="project-card group flex flex-col gap-6 p-6 rounded-xl border border-white/10 bg-slate-900/20 transition-all duration-300">
+<div class="w-full aspect-video rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-slate-800 animate-pulse group-hover:hidden"></div>
+<img alt="E-commerce mobile app interface" class="w-full h-full object-cover" data-alt="Modern mobile shopping application interface design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhjgEqgleXkmWZk6IPmQNkwkcWleUq2PHrsSSy7DV4FEYLHJjkfaoEfdOOzpozkP8f4RSaENMtERt5HXptZrVGKP0l0mMZaL3L-99L3XbD92Z4WNfUTgf1EK9kWgZXBfp5TPEpvwp_TKNr8OIvP4fqYNE2lEiz1HKEHjxrGijqrrrjEW2cjSJadFyTb0EeYVbU34ZKD6jh288aJwKnU5TfEm_TTFO38tdDaqEKmLZVjOx2JfDwsO4EnwOCd4uikcOHzIK3DM7-9h9z"/>
+</div>
+<div class="flex flex-col flex-1">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Мобільний додаток</span>
+<h3 class="text-2xl font-bold mb-3">E-commerce App</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Інноваційне рішення для онлайн-покупок з акцентом на персоналізований UX та безшовну оплату.
+                        </p>
+<div class="mt-auto">
+<button class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                                Дивитися кейс
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="project-card group flex flex-col gap-6 p-6 rounded-xl border border-white/10 bg-slate-900/20 transition-all duration-300">
+<div class="w-full aspect-video rounded-lg overflow-hidden">
+<img alt="Financial dashboard analytics" class="w-full h-full object-cover" data-alt="Complex financial analytics dashboard with charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwfqCrE4uIcNnPsqH1UUpvdXnyqYZX11zHzDSLav_Hknzjfi4KL8X4ResdNvbqTyHiA4Qv7_s9gLnH9K56gldYkBFik8EvMwWoY4LSl8vJtS6orpcugcYG7OkdkfTCYd6VpoDSJgO0zPNMYs7jmQGJhB8OINncSQpPVrsj7DWxF_JQP7T5S_L8s-r3-WCYnxP8q61pdJRpt2zayObHKeeXpA9KGcsY7cWXOk0bfwzHXZ7YvhmUv4qqxhriJpG5PlQVC1mQKMsZAlfS"/>
+</div>
+<div class="flex flex-col flex-1">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Веб-інтерфейс</span>
+<h3 class="text-2xl font-bold mb-3">Fintech Dashboard</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Комплексна панель керування фінансами для бізнесу з глибокою аналітикою та автоматизацією звітності.
+                        </p>
+<div class="mt-auto">
+<button class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                                Дивитися кейс
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="project-card group flex flex-col gap-6 p-6 rounded-xl border border-white/10 bg-slate-900/20 transition-all duration-300">
+<div class="w-full aspect-video rounded-lg overflow-hidden">
+<img alt="Health tracking application screens" class="w-full h-full object-cover" data-alt="Health and wellness tracker mobile interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChEYtfkWMdc2VD-TEUcZyGW2QW9PXIO75U5lKOYhtJ4BYAIRMUXp_vw5MOVWMv35-zkJc9-bqSVq_denPv2LMy5IBRHXnAU9zOkH9_nXDAs0AHHeTnRMevkaNvzZRuqaUaMOXKMsFlhl3tVpTrZXaBYMn5IVpaPMNASIpUUYTrgHziixwTQsVhgQb_Wq9CWbRLBfdNVC0k1cmHA1IQddCMKky_qqEsLg8UPWW9lTzev8wbTyHEezTpvsNsXQfuAtfiHOd8E_s6cQVK"/>
+</div>
+<div class="flex flex-col flex-1">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Мобільний додаток</span>
+<h3 class="text-2xl font-bold mb-3">Health Tracker</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Трекер здоров'я з персоналізованими рекомендаціями, інтеграцією зі смарт-годинниками та гейміфікацією.
+                        </p>
+<div class="mt-auto">
+<button class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                                Дивитися кейс
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="project-card group flex flex-col gap-6 p-6 rounded-xl border border-white/10 bg-slate-900/20 transition-all duration-300">
+<div class="w-full aspect-video rounded-lg overflow-hidden">
+<img alt="Real estate platform listing page" class="w-full h-full object-cover" data-alt="SaaS real estate platform web design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvKJK9mA6i8G-NnFA3BjviIm6b0cwpTmkWT4fozXGANxioMyOxeENkSQdcPZxVlfgfaYpLk2wBuh992cRkQCPHH7VCGAvojYpvf4RPNys_oM7riEpjJNgK-lXzXocMAczk2Vn-OxEsrbxrXJPRouNpELHuVuIhRUDn4fb8AiMJGXMR-eNegKcDJ1uL7TQUQ7epAJDR7XyKNCfXGZ6xmONh5cIYUwqmlwO7qu60QmjzSidx047XAJTiK6-8kEMlV38Hm_K0duI-d8aQ"/>
+</div>
+<div class="flex flex-col flex-1">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2">SaaS платформа</span>
+<h3 class="text-2xl font-bold mb-3">Real Estate Portal</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Екосистема для пошуку та оренди нерухомості з використанням AR-турів та AI-підбору житла.
+                        </p>
+<div class="mt-auto">
+<button class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                                Дивитися кейс
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="mt-32 mb-16 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent p-12 text-center border border-white/5">
+<h2 class="text-4xl font-black mb-4">Маєте ідею для проєкту?</h2>
+<p class="text-slate-400 mb-8 max-w-xl mx-auto">
+                    Давайте створимо щось неймовірне разом. Я завжди відкритий до нових викликів та інноваційних ідей.
+                </p>
+<button class="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105">
+                    Написати мені
+                </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-800 py-12 px-6 lg:px-20 bg-black/50">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex gap-10">
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-medium" href="#">Behance</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-medium" href="#">Dribbble</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-medium" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-medium" href="#">Instagram</a>
+</div>
+<p class="text-slate-500 text-sm">
+                    © 2024 UI/UX Designer Portfolio. Всі права захищено.
+                </p>
+</div>
+</footer>
+</div>
+</body></html>
