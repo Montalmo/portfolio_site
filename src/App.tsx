@@ -168,6 +168,7 @@ function App() {
 
   const handleCloseCase = () => {
     setSelectedCaseId(null);
+    setActiveSection('hero');
   };
 
   // Track active section on scroll
