@@ -183,7 +183,16 @@ function App() {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          // For the last section (contact), also check if we're at the bottom of the page
+          if (section === 'contact') {
+            const pageHeight = document.documentElement.scrollHeight;
+            const viewportHeight = window.innerHeight;
+
+            if (scrollPosition >= offsetTop || scrollPosition >= pageHeight - viewportHeight) {
+              setActiveSection(section);
+              break;
+            }
+          } else if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
           }
@@ -470,7 +479,7 @@ function App() {
 
               {/* Contact Section */}
               <ScrollAnimationBlock delay={0.4}>
-                <section id="contact" className="relative w-full px-6 py-24 md:py-32 flex flex-col items-center justify-center overflow-hidden">
+                <section id="contact" className="relative w-full px-6 py-24 md:py-32 min-h-screen flex flex-col items-center justify-center overflow-hidden">
                   <FooterBubbleAnimation />
                   {/* Background Gradient Effect */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.12)_0%,rgba(9,9,11,0)_60%)] pointer-events-none"></div>
