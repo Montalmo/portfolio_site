@@ -320,14 +320,14 @@ function App() {
                         {/* Left Column */}
                         <div className="flex flex-col gap-6">
                           <p className="text-slate-300 text-lg md:text-xl leading-relaxed">
-                            Мій підхід базується на емпатії до користувача та інноваційних рішеннях. Я вірю, що кожен піксель повинен мати мету, а кожен перехід — розповідати історію.
+                            Мій підхід базується на системному мисленні та глибокій аналітиці бізнес-процесів. Я вірю, що в складних SaaS-продуктах кожен піксель має працювати на ефективність, а кожен інтерфейсний перехід — спрощувати шлях користувача до результату.
                           </p>
                         </div>
 
                         {/* Right Column */}
                         <div className="flex flex-col gap-6">
                           <p className="text-slate-300 text-lg leading-relaxed">
-                            Я прагну створювати інтерфейси, які не лише виглядають естетично, але й вирішують реальні бізнес-завдання, роблячи взаємодію з цифровим світом безшовною та приємною.
+                            Я спеціалізуюся на створенні інтерфейсів, які не лише виглядають сучасно, а й вирішують реальні завдання великого бізнесу. Моя мета — зробити взаємодію з важкими масивами даних та багатоетапними процесами безшовною, інтуїтивною та результативною.
                           </p>
                         </div>
                       </div>
@@ -375,15 +375,15 @@ function App() {
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">database</span>
                         <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">SaaS & Product Design</h4>
-                          <p className="text-slate-400 text-sm leading-relaxed">Проектую CRM/ERP системи з нуля, працюючи з багатокористувацькою логікою та великими даними.</p>
+                          <h4 className="text-white text-lg font-bold">SaaS та Product Design</h4>
+                          <p className="text-slate-400 text-sm leading-relaxed">Проєктування CRM/ERP систем з нуля, робота з великими даними та складною логікою ролей.</p>
                         </div>
                       </div>
                       <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">account_tree</span>
                         <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">UX Architecture</h4>
+                          <h4 className="text-white text-lg font-bold">UX-архітектура</h4>
                           <p className="text-slate-400 text-sm leading-relaxed">Створюю інтуїтивні сценарії для складних процесів (multi-step flows, верифікація, аукціони).</p>
                         </div>
                       </div>
@@ -391,7 +391,7 @@ function App() {
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">palette</span>
                         <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">Visual Identity</h4>
+                          <h4 className="text-white text-lg font-bold">Візуальна айдентика</h4>
                           <p className="text-slate-400 text-sm leading-relaxed">Підсилюю продукти досвідом у брендингу, забезпечуючи цілісний образ бренду.</p>
                         </div>
                       </div>
