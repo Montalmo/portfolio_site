@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import saLogo from '../assets/sa_logo.svg';
 
 interface CaseStudyProps {
     project: {
@@ -123,10 +124,13 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                 <header className="fixed top-0 left-0 w-full h-20 bg-zinc-950/80 backdrop-blur-lg z-50 border-b border-white/5 flex justify-center">
                     <div className="w-full max-w-[1240px] px-6 md:px-12 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <button onClick={onBack} className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                                <span className="material-symbols-outlined text-3xl font-bold text-violet-500">blur_on</span>
-                                <h2 className="text-slate-100 text-2xl font-bold tracking-tight font-display">ELARA</h2>
-                            </button>
+                            <a href="#hero" className="flex items-center gap-2 cursor-pointer">
+                                <img
+                                    src={saLogo}
+                                    alt="ELARA"
+                                    className="h-10 w-auto"
+                                />
+                            </a>
                         </div>
                         <nav className="hidden md:flex items-center gap-10">
                             <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#work">Роботи</a>
@@ -265,22 +269,18 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                 {/* Footer - Using main page footer */}
                 <footer className="w-full bg-zinc-950 border-t border-white/5 pt-20 pb-12">
                     <div className="max-w-[1240px] mx-auto px-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                            <div className="flex flex-col items-center md:items-start gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-center">
+                            <div className="flex justify-start">
                                 <div className="flex items-center gap-2 text-slate-400">
                                     <span className="material-symbols-outlined text-violet-500">location_on</span>
-                                    <span className="font-medium">Київ, Україна</span>
+                                    <span className="font-medium">Харків, Україна</span>
                                 </div>
                             </div>
 
-                            <div className="lg:col-span-2 flex justify-center items-center gap-8 md:gap-12 flex-wrap">
+                            <div className="flex justify-center items-center gap-6 md:gap-8 flex-wrap">
                                 <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
                                     <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">language</span>
                                     Dribbble
-                                </a>
-                                <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
-                                    <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">brush</span>
-                                    Behance
                                 </a>
                                 <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
                                     <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">hub</span>
@@ -292,7 +292,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                                 </a>
                             </div>
 
-                            <div className="flex justify-center md:justify-end">
+                            <div className="flex justify-end">
                                 <button
                                     onClick={onBack}
                                     className="size-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-violet-500 hover:border-violet-500 transition-all active:scale-90"

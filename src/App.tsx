@@ -5,6 +5,7 @@ import ScrollAnimationBlock from './components/ScrollAnimationBlock'
 import FooterBubbleAnimation from './components/FooterBubbleAnimation'
 import ContactModal from './components/ContactModal'
 import CaseStudy from './components/CaseStudy'
+import saLogo from './assets/sa_logo.svg'
 // Removed horizontal scroll hook - using simple grid layout instead
 
 interface CounterProps {
@@ -154,6 +155,7 @@ const Counter: React.FC<CounterProps> = ({ start = 0, end, duration = 2000, suff
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedCaseId, setSelectedCaseId] = useState<number | null>(null)
+  const [activeSection, setActiveSection] = useState('hero')
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
@@ -167,6 +169,33 @@ function App() {
   const handleCloseCase = () => {
     setSelectedCaseId(null);
   };
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sections = ['hero', 'about', 'work', 'contact'];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const getCurrentCaseIndex = () => {
     if (selectedCaseId === null) return -1;
@@ -183,17 +212,21 @@ function App() {
       <div className="layout-container flex h-full grow flex-col">
         {/* Navigation Header */}
         <header className="fixed top-0 left-0 w-full h-20 bg-zinc-950/80 backdrop-blur-lg z-50 border-b border-white/5 flex justify-center">
-          <div className="w-full max-w-[1240px] px-6 md:px-12 flex items-center justify-between">
+          <div className="w-full max-w-[1240px] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="text-violet-500">
-                <span className="material-symbols-outlined text-3xl font-bold">blur_on</span>
-              </div>
-              <h2 className="text-slate-100 text-2xl font-bold tracking-tight font-display">ELARA</h2>
+              <a href="#hero" className="flex items-center gap-2 cursor-pointer">
+                <img
+                  src={saLogo}
+                  alt="ELARA"
+                  className="h-10 w-auto"
+                />
+              </a>
             </div>
             <nav className="hidden md:flex items-center gap-10">
-              <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#work">Роботи</a>
-              <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#about">Про мене</a>
-              <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#contact">Контакти</a>
+              <a className={`text-sm font-medium transition-colors ${activeSection === 'hero' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`} href="#hero">Головна</a>
+              <a className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`} href="#about">Про мене</a>
+              <a className={`text-sm font-medium transition-colors ${activeSection === 'work' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`} href="#work">Роботи</a>
+              <a className={`text-sm font-medium transition-colors ${activeSection === 'contact' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`} href="#contact">Контакти</a>
               <button
                 onClick={openModal}
                 className="flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-violet-500/10 border border-violet-500/20 text-violet-500 text-sm font-bold transition-all hover:bg-violet-500/20">
@@ -211,7 +244,7 @@ function App() {
           {!selectedCaseId && (
             <>
               {/* Hero Section */}
-              <section className="relative flex flex-1 items-center justify-center px-6 py-20 pb-32">
+              <section id="hero" className="relative flex flex-1 items-center justify-center px-6 py-20 pb-32">
                 {/* Background Animation and Gradients */}
                 <FigmaSketchAnimation />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.12)_0%,rgba(9,9,11,0)_60%)] pointer-events-none"></div>
@@ -468,22 +501,18 @@ function App() {
         {!selectedCaseId && (
           <footer className="w-full bg-zinc-950 border-t border-white/5 pt-20 pb-12">
             <div className="max-w-[1240px] mx-auto px-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <div className="flex flex-col items-center md:items-start gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-center">
+                <div className="flex justify-start">
                   <div className="flex items-center gap-2 text-slate-400">
                     <span className="material-symbols-outlined text-violet-500">location_on</span>
-                    <span className="font-medium">Київ, Україна</span>
+                    <span className="font-medium">Харків, Україна</span>
                   </div>
                 </div>
 
-                <div className="lg:col-span-2 flex justify-center items-center gap-8 md:gap-12 flex-wrap">
+                <div className="flex justify-center items-center gap-6 md:gap-8 flex-wrap">
                   <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
                     <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">language</span>
                     Dribbble
-                  </a>
-                  <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
-                    <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">brush</span>
-                    Behance
                   </a>
                   <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
                     <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">hub</span>
@@ -495,7 +524,7 @@ function App() {
                   </a>
                 </div>
 
-                <div className="flex justify-center md:justify-end">
+                <div className="flex justify-end">
                   <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className="size-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-violet-500 hover:border-violet-500 transition-all active:scale-90"
