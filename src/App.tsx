@@ -326,7 +326,7 @@ function App() {
 
                         {/* Right Column */}
                         <div className="flex flex-col gap-6">
-                          <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+                          <p className="text-slate-300 text-lg leading-relaxed">
                             Я прагну створювати інтерфейси, які не лише виглядають естетично, але й вирішують реальні бізнес-завдання, роблячи взаємодію з цифровим світом безшовною та приємною.
                           </p>
                         </div>
@@ -335,25 +335,25 @@ function App() {
                       {/* Numbers Block */}
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
                         <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
                             <Counter end={9} suffix="+" />
                           </p>
                           <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Років досвіду</p>
                         </div>
                         <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
                             <Counter end={50} suffix="+" />
                           </p>
                           <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Проєктів</p>
                         </div>
                         <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
                             <Counter start={100} end={0} suffix="%" />
                           </p>
                           <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Хаосу</p>
                         </div>
                         <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center">
+                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
                             <Counter end={100} suffix="%" />
                           </p>
                           <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Якість</p>
@@ -363,7 +363,7 @@ function App() {
 
                     {/* Expertise Cards — horizontal row of 4 below Philosophy+Stats */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-8 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">psychology</span>
                         <div className="flex flex-col gap-4">
@@ -371,7 +371,7 @@ function App() {
                           <p className="text-slate-400 text-sm leading-relaxed">Глибоке розуміння користувача — фундамент кожного успішного проекту.</p>
                         </div>
                       </div>
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-8 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">database</span>
                         <div className="flex flex-col gap-4">
@@ -379,7 +379,7 @@ function App() {
                           <p className="text-slate-400 text-sm leading-relaxed">Проектую CRM/ERP системи з нуля, працюючи з багатокористувацькою логікою та великими даними.</p>
                         </div>
                       </div>
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-8 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">account_tree</span>
                         <div className="flex flex-col gap-4">
@@ -387,7 +387,7 @@ function App() {
                           <p className="text-slate-400 text-sm leading-relaxed">Створюю інтуїтивні сценарії для складних процесів (multi-step flows, верифікація, аукціони).</p>
                         </div>
                       </div>
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-8 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
                         <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                         <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">palette</span>
                         <div className="flex flex-col gap-4">
