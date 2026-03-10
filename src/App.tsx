@@ -556,6 +556,7 @@ function App() {
           nextCase={nextCase}
           onNavigate={handleOpenCase}
           onBack={handleCloseCase}
+          onOpenContact={openModal}
         />
       )}
     </div >

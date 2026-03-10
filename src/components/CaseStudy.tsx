@@ -16,6 +16,7 @@ interface CaseStudyProps {
     nextCase?: { id: number; title: string } | null;
     onNavigate?: (id: number) => void;
     onBack?: () => void;
+    onOpenContact?: () => void;
 }
 
 // Lightbox Modal Component (reusing ContactModal pattern)
@@ -95,7 +96,7 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, imageSrc, onClose }) => {
     );
 };
 
-const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNavigate, onBack }) => {
+const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNavigate, onBack, onOpenContact }) => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxImage, setLightboxImage] = useState('');
 
@@ -122,7 +123,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
             <div className="layout-container flex h-full grow flex-col">
                 {/* Navigation Header */}
                 <header className="fixed top-0 left-0 w-full h-20 bg-zinc-950/80 backdrop-blur-lg z-50 border-b border-white/5 flex justify-center">
-                    <div className="w-full max-w-[1240px] px-6 md:px-12 flex items-center justify-between">
+                    <div className="w-full max-w-[1240px] flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <a href="#hero" className="flex items-center gap-2 cursor-pointer">
                                 <img
@@ -132,13 +133,21 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                                 />
                             </a>
                         </div>
-                        <nav className="hidden md:flex items-center gap-10">
-                            <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#work">Роботи</a>
-                            <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#about">Про мене</a>
-                            <a className="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="#contact">Контакти</a>
+                        <nav className="hidden md:flex items-center gap-8">
+                            <button onClick={onBack} className="text-slate-400 hover:text-white text-sm font-medium transition-colors">
+                                На головну
+                            </button>
+                            <button onClick={onOpenContact} className="flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-violet-500/10 border border-violet-500/20 text-violet-500 text-sm font-bold transition-all hover:bg-violet-500/20">
+                                <span>Співпраця</span>
+                            </button>
                         </nav>
-                        <div className="md:hidden">
-                            <span className="material-symbols-outlined text-slate-100">menu</span>
+                        <div className="md:hidden flex items-center gap-4">
+                            <button onClick={onBack} className="text-slate-400 hover:text-white text-sm font-medium transition-colors">
+                                <span className="material-symbols-outlined">home</span>
+                            </button>
+                            <button onClick={onOpenContact} className="text-violet-400 text-sm font-medium">
+                                Співпраця
+                            </button>
                         </div>
                     </div>
                 </header>
