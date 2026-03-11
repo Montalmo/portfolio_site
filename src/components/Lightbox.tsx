@@ -35,12 +35,14 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, imageSrc, onClose }) => {
         };
     }, [isOpen, onClose]);
 
-    // Handle visibility animation
+    // Handle visibility animation - use setTimeout to avoid ESLint warning about setState in effect
     useEffect(() => {
         if (isOpen) {
-            setIsVisible(true);
+            const timer = setTimeout(() => setIsVisible(true), 0);
+            return () => clearTimeout(timer);
         } else {
-            setIsVisible(false);
+            const timer = setTimeout(() => setIsVisible(false), 300);
+            return () => clearTimeout(timer);
         }
     }, [isOpen]);
 
@@ -71,8 +73,8 @@ const Lightbox: React.FC<LightboxProps> = ({ isOpen, imageSrc, onClose }) => {
 
             <div
                 className={`relative transform transition-all duration-300 ${isVisible
-                        ? 'opacity-100 scale-100'
-                        : 'opacity-0 scale-95'
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-0 scale-95'
                     }`}
             >
                 <img

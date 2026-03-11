@@ -50,10 +50,10 @@ const ScrollAnimationBlock: React.FC<ScrollAnimationBlockProps> = ({
                 });
             },
             {
-                // Start animation when block is 20% visible
-                threshold: 0.2,
-                // Offset to trigger slightly before the block enters viewport
-                rootMargin: '0px 0px -50px 0px'
+                // Start animation when block is 5% visible
+                threshold: 0.05,
+                // Offset to trigger much earlier on mobile
+                rootMargin: '0px 0px -180px 0px'
             }
         );
 

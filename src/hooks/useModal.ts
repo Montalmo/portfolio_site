@@ -59,7 +59,6 @@ interface UseScrollSpyOptions {
 
 export const useScrollSpy = ({
     sectionIds,
-    threshold = 0.3,
     offset = 100
 }: UseScrollSpyOptions) => {
     const activeSectionRef = useRef<string>(sectionIds[0] || 'hero');

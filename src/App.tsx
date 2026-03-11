@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import FigmaSketchAnimation from './components/FigmaSketchAnimation';
 import ScrollAnimationBlock from './components/ScrollAnimationBlock';
 import FooterBubbleAnimation from './components/FooterBubbleAnimation';
 import ContactModal from './components/ContactModal';
+import PrimaryButton from './components/PrimaryButton';
 import CaseStudy from './components/CaseStudy';
 import SwayingText from './components/SwayingText';
 import Counter from './components/Counter';
@@ -25,15 +26,51 @@ function App() {
   const [selectedCaseId, setSelectedCaseId] = useState<number | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Use ref for active section to avoid unnecessary re-renders during scroll
-  const activeSectionRef = useRef('hero');
-  const [, setForceRender] = useState(0); // Only used to trigger re-render when section changes
+  // Use state for active section with ref for useEffect to avoid stale closures
+  const [activeSection, setActiveSection] = useState('hero');
+  const activeSectionRef = useRef(activeSection);
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  // Handle scroll offset for mobile (<480px) when clicking nav links
+  useEffect(() => {
+    const handleNavClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a[href^="#"]');
+
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+
+      const targetId = href.slice(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (!targetElement) return;
+
+      // Only apply offset on mobile (<480px)
+      if (window.innerWidth < 480) {
+        e.preventDefault();
+        const headerHeight = 32; // offset for mobile nav
+        const offsetPosition = targetElement.offsetTop - headerHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    document.addEventListener('click', handleNavClick);
+    return () => document.removeEventListener('click', handleNavClick);
+  }, []);
 
   // Handle case study navigation
   const handleOpenCase = (caseId: number) => {
@@ -43,8 +80,7 @@ function App() {
 
   const handleCloseCase = () => {
     setSelectedCaseId(null);
-    activeSectionRef.current = 'hero';
-    setForceRender(n => n + 1);
+    setActiveSection('hero');
   };
 
   // Optimized scroll handler with throttling using requestAnimationFrame
@@ -74,15 +110,13 @@ function App() {
 
               if (scrollPosition >= offsetTop || scrollPosition >= pageHeight - viewportHeight) {
                 if (activeSectionRef.current !== section) {
-                  activeSectionRef.current = section;
-                  setForceRender(n => n + 1);
+                  setActiveSection(section);
                 }
                 break;
               }
             } else if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
               if (activeSectionRef.current !== section) {
-                activeSectionRef.current = section;
-                setForceRender(n => n + 1);
+                setActiveSection(section);
               }
               break;
             }
@@ -90,8 +124,6 @@ function App() {
         }
       });
     };
-
-    const ref = { current: 0 };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -130,10 +162,10 @@ function App() {
               </a>
             </div>
             <nav className="hidden md:flex items-center gap-10">
-              <NavLink href="#hero" activeSection={activeSectionRef.current}>Головна</NavLink>
-              <NavLink href="#about" activeSection={activeSectionRef.current}>Про мене</NavLink>
-              <NavLink href="#work" activeSection={activeSectionRef.current}>Роботи</NavLink>
-              <NavLink href="#contact" activeSection={activeSectionRef.current}>Контакти</NavLink>
+              <NavLink href="#hero" activeSection={activeSection}>Головна</NavLink>
+              <NavLink href="#about" activeSection={activeSection}>Про мене</NavLink>
+              <NavLink href="#work" activeSection={activeSection}>Роботи</NavLink>
+              <NavLink href="#contact" activeSection={activeSection}>Контакти</NavLink>
               <button
                 onClick={openModal}
                 className="flex min-w-[100px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-violet-500/10 border border-violet-500/20 text-violet-500 text-sm font-bold transition-all hover:bg-violet-500/20">
@@ -150,10 +182,10 @@ function App() {
         {isMobileMenuOpen && (
           <div className="fixed inset-0 top-16 md:top-20 left-0 w-full h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] bg-zinc-950/90 backdrop-blur-lg z-40 md:hidden">
             <nav className="flex flex-col items-center justify-center gap-8 h-full">
-              <MobileNavLink href="#hero" activeSection={activeSectionRef.current} onClick={closeMobileMenu}>Головна</MobileNavLink>
-              <MobileNavLink href="#about" activeSection={activeSectionRef.current} onClick={closeMobileMenu}>Про мене</MobileNavLink>
-              <MobileNavLink href="#work" activeSection={activeSectionRef.current} onClick={closeMobileMenu}>Роботи</MobileNavLink>
-              <MobileNavLink href="#contact" activeSection={activeSectionRef.current} onClick={closeMobileMenu}>Контакти</MobileNavLink>
+              <MobileNavLink href="#hero" activeSection={activeSection} onClick={closeMobileMenu}>Головна</MobileNavLink>
+              <MobileNavLink href="#about" activeSection={activeSection} onClick={closeMobileMenu}>Про мене</MobileNavLink>
+              <MobileNavLink href="#work" activeSection={activeSection} onClick={closeMobileMenu}>Роботи</MobileNavLink>
+              <MobileNavLink href="#contact" activeSection={activeSection} onClick={closeMobileMenu}>Контакти</MobileNavLink>
               <button
                 onClick={() => { closeMobileMenu(); openModal(); }}
                 className="flex min-w-[140px] cursor-pointer items-center justify-center rounded-full h-12 px-8 bg-violet-500/10 border border-violet-500/20 text-violet-500 text-base font-bold transition-all hover:bg-violet-500/20 mt-4">
@@ -219,83 +251,88 @@ function App() {
 
               {/* About Section */}
               <section id="about" className="relative px-6 md:px-12 py-24 max-[480px]:px-4 max-[480px]:py-14 w-full">
-                <div className="max-w-[1240px] mx-auto flex flex-col gap-20 max-[480px]:gap-8">
-                  {/* Title Section */}
-                  <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 max-[480px]:pb-6 gap-4">
-                    <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black leading-none tracking-tight">Про мене</h2>
-                    <p className="text-violet-400 text-lg md:text-xl max-[480px]:text-base font-medium tracking-wide uppercase">UI/UX Дизайнер з України</p>
-                  </div>
+                <ScrollAnimationBlock>
+                  <div className="max-w-[1240px] mx-auto flex flex-col gap-20 max-[480px]:gap-8">
+                    {/* Title Section */}
+                    <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 max-[480px]:pb-6 gap-4">
+                      <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black leading-none tracking-tight">Про мене</h2>
+                      <p className="text-violet-400 text-lg md:text-xl max-[480px]:text-base font-medium tracking-wide uppercase">UI/UX Дизайнер з України</p>
+                    </div>
 
-                  {/* Two-Column Layout: Philosophy + Stats */}
-                  <div className="flex flex-col gap-16 lg:gap-20 max-[480px]:gap-6 items-center">
-                    {/* Two Columns with Text */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-[480px]:gap-4 w-full">
-                      {/* Left Column */}
-                      <div className="flex flex-col gap-6 max-[480px]:gap-4">
-                        <p className="text-slate-300 text-lg md:text-xl max-[480px]:text-sm leading-relaxed">
-                          Мій підхід базується на системному мисленні та глибокій аналітиці бізнес-процесів. Я вірю, що в складних SaaS-продуктах кожен піксель має працювати на ефективність, а кожен інтерфейсний перехід — спрощувати шлях користувача до результату.
-                        </p>
+                    {/* Two-Column Layout: Philosophy + Stats */}
+                    <div className="flex flex-col gap-16 lg:gap-20 max-[480px]:gap-6 items-center">
+                      {/* Two Columns with Text */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-[480px]:gap-4 w-full">
+                        {/* Left Column */}
+                        <div className="flex flex-col gap-6 max-[480px]:gap-4">
+                          <p className="text-slate-300 text-lg md:text-xl max-[480px]:text-sm leading-relaxed">
+                            Мій підхід базується на системному мисленні та глибокій аналітиці бізнес-процесів. Я вірю, що в складних SaaS-продуктах кожен піксель має працювати на ефективність, а кожен інтерфейсний перехід — спрощувати шлях користувача до результату.
+                          </p>
+                        </div>
+
+                        {/* Right Column */}
+                        <div className="flex flex-col gap-6 max-[480px]:gap-4">
+                          <p className="text-slate-300 text-lg max-[480px]:text-sm leading-relaxed">
+                            Я спеціалізуюся на створенні інтерфейсів, які не лише виглядають сучасно, а й вирішують реальні завдання великого бізнесу. Моя мета — зробити взаємодію з важкими масивами даних та багатоетапними процесами безшовною, інтуїтивною та результативною.
+                          </p>
+                        </div>
                       </div>
 
-                      {/* Right Column */}
-                      <div className="flex flex-col gap-6 max-[480px]:gap-4">
-                        <p className="text-slate-300 text-lg max-[480px]:text-sm leading-relaxed">
-                          Я спеціалізуюся на створенні інтерфейсів, які не лише виглядають сучасно, а й вирішують реальні завдання великого бізнесу. Моя мета — зробити взаємодію з важкими масивами даних та багатоетапними процесами безшовною, інтуїтивною та результативною.
-                        </p>
+                      {/* Numbers Block */}
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
+                        <CounterCard value={9} suffix="+" label="Років досвіду" />
+                        <CounterCard value={50} suffix="+" label="Проєктів" />
+                        <CounterCard start={100} value={0} suffix="%" label="Хаосу" />
+                        <CounterCard value={100} suffix="%" label="Якість" />
                       </div>
                     </div>
 
-                    {/* Numbers Block */}
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
-                      <CounterCard value={9} suffix="+" label="Років досвіду" />
-                      <CounterCard value={50} suffix="+" label="Проєктів" />
-                      <CounterCard start={100} value={0} suffix="%" label="Хаосу" />
-                      <CounterCard value={100} suffix="%" label="Якість" />
-                    </div>
+                    {/* Expertise Cards */}
+                    <ExpertiseCards />
+
+                    {/* Tools Section */}
+                    <ToolsSection tools={tools} />
                   </div>
-
-                  {/* Expertise Cards */}
-                  <ExpertiseCards />
-
-                  {/* Tools Section */}
-                  <ToolsSection tools={tools} />
-                </div>
+                </ScrollAnimationBlock>
               </section>
 
               {/* Portfolio Section */}
               <section id="work" className="relative px-6 md:px-12 py-24 max-[480px]:px-4 max-[480px]:py-14 w-full">
-                <div className="max-w-[1240px] mx-auto flex flex-col gap-16 max-[480px]:gap-8">
-                  <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 max-[480px]:pb-6 gap-4">
-                    <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black leading-none tracking-tight">Мої проєкти</h2>
-                    <p className="text-violet-400 text-lg md:text-xl max-[480px]:text-base font-medium tracking-wide uppercase">Добірка найкращих моїх рішень</p>
-                  </div>
+                <ScrollAnimationBlock>
+                  <div className="max-w-[1240px] mx-auto flex flex-col gap-16 max-[480px]:gap-8">
+                    <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 max-[480px]:pb-6 gap-4">
+                      <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black leading-none tracking-tight">Мої проєкти</h2>
+                      <p className="text-violet-400 text-lg md:text-xl max-[480px]:text-base font-medium tracking-wide uppercase">Добірка найкращих моїх рішень</p>
+                    </div>
 
-                  {/* Simple 2-Column Grid Layout */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {projects.map((project) => (
-                      <div
-                        key={project.id}
-                        onClick={() => handleOpenCase(project.id)}
-                        className="group flex flex-col rounded-2xl bg-white/[0.02] overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.1)] cursor-pointer"
-                      >
-                        <div className="w-full aspect-square relative">
+                    {/* Simple 2-Column Grid Layout */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {projects.map((project) => (
+                        <div
+                          key={project.id}
+                          onClick={() => handleOpenCase(project.id)}
+                          className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer"
+                        >
+                          {/* Background Image */}
                           <img
                             src={project.image}
                             alt={project.title}
                             loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
+                          {/* Text Content - Bottom Overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
+                            <span className="text-violet-400 text-xs font-bold uppercase tracking-widest">{project.category}</span>
+                            <h3 className="text-white text-xl font-bold">{project.title}</h3>
+                            <p className="text-slate-300 text-sm line-clamp-2">{project.description}</p>
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-3 p-6">
-                          <span className="text-violet-400 text-xs font-bold uppercase tracking-widest">{project.category}</span>
-                          <h3 className="text-white text-xl font-bold">{project.title}</h3>
-                          <p className="text-slate-400 text-sm line-clamp-2">{project.description}</p>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </ScrollAnimationBlock>
               </section>
 
               {/* Contact Section */}
@@ -309,12 +346,9 @@ function App() {
                   <p className="text-slate-400 text-lg text-center max-w-xl">
                     Напишіть мені, і ми обговоримо деталі вашого проєкту.
                   </p>
-                  <button
-                    onClick={openModal}
-                    className="flex cursor-pointer items-center justify-center rounded-full h-14 px-8 bg-violet-600 text-white text-base font-bold transition-all hover:scale-105 hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)]"
-                  >
-                    <span>Зв'язатися</span>
-                  </button>
+                  <PrimaryButton onClick={openModal}>
+                    Зв'язатися
+                  </PrimaryButton>
                 </div>
               </section>
 

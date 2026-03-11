@@ -1,0 +1,306 @@
+/**
+ * Text Styles - Typography system for the portfolio
+ * 
+ * This file documents all text styles used throughout the project.
+ * Based on Tailwind CSS with custom fonts and color palette.
+ * 
+ * FONTS:
+ * - Primary: Inter (sans-serif) - body text
+ * - Display: Outfit (with Inter fallback) - headings
+ * 
+ * COLORS:
+ * - Primary: text-slate-100 (white-ish)
+ * - Secondary: text-slate-400 (muted)
+ * - Tertiary: text-slate-300 (light gray)
+ * - White: text-white (pure white)
+ * - Accent: text-violet-400/500 (purple)
+ */
+
+/* ============================================
+   FONT CLASSES
+   ============================================ */
+
+/* Body text - uses Inter */
+.font-sans {
+    font-family: "Inter", sans-serif;
+}
+
+/* Display headings - uses Outfit */
+.font-display {
+    font-family: "Outfit", "Inter", sans-serif;
+}
+
+/* ============================================
+   HEADING STYLES
+   ============================================ */
+
+/* Hero Title - Largest display text */
+.heading-hero {
+    @apply text-slate-100 text-[88px] font-black leading-[1.1] tracking-tight font-display;
+}
+
+/* Hero Title - Mobile */
+@media (max-width: 480px) {
+    .heading-hero {
+        @apply text-[56px];
+    }
+}
+
+/* Section Title - Large headings */
+.heading-section {
+    @apply text-white text-[64px] font-display font-black leading-none tracking-tight;
+}
+
+/* Section Title - Mobile */
+@media (max-width: 480px) {
+    .heading-section {
+        @apply text-[48px];
+    }
+}
+
+/* Card Title */
+.heading-card {
+    @apply text-white text-xl font-bold;
+}
+
+/* ============================================
+   BODY TEXT STYLES
+   ============================================ */
+
+/* Body Large - Primary description text */
+.text-body-large {
+    @apply text-slate-400 text-[18px] font-light leading-relaxed;
+}
+
+/* Body Large - Mobile */
+@media (max-width: 480px) {
+    .text-body-large {
+        @apply text-base;
+    }
+}
+
+/* Body - Standard paragraph text */
+.text-body {
+    @apply text-slate-300 text-lg leading-relaxed;
+}
+
+/* Body - Mobile */
+@media (max-width: 480px) {
+    .text-body {
+        @apply text-sm;
+    }
+}
+
+/* Body Muted - Secondary text */
+.text-body-muted {
+    @apply text-slate-300 text-sm leading-relaxed;
+}
+
+/* ============================================
+   LABEL & TAG STYLES
+   ============================================ */
+
+/* Label - Uppercase with tracking */
+.text-label {
+    @apply text-violet-400 text-lg font-medium tracking-wide uppercase;
+}
+
+/* Label - Mobile */
+@media (max-width: 480px) {
+    .text-label {
+        @apply text-base;
+    }
+}
+
+/* Tag - Small uppercase label */
+.text-tag {
+    @apply text-violet-400 text-xs font-bold uppercase tracking-widest;
+}
+
+/* Tag - Card/Project category */
+.text-tag-card {
+    @apply text-violet-400 text-xs font-bold uppercase tracking-widest;
+}
+
+/* ============================================
+   BUTTON TEXT STYLES
+   ============================================ */
+
+/* Primary Button */
+.text-button-primary {
+    @apply text-white text-base font-bold;
+}
+
+/* Secondary Button */
+.text-button-secondary {
+    @apply text-slate-300 text-base font-bold;
+}
+
+/* Tertiary/Small Button */
+.text-button-tertiary {
+    @apply text-violet-500 text-sm font-bold;
+}
+
+/* ============================================
+   NAVIGATION TEXT
+   ============================================ */
+
+/* Nav Link - Default */
+.text-nav {
+    @apply text-slate-400 text-sm font-medium transition-colors;
+}
+
+/* Nav Link - Hover/Active */
+.text-nav-active {
+    @apply text-white;
+}
+
+/* ============================================
+   SPECIAL TEXT EFFECTS
+   ============================================ */
+
+/* Gradient Text - Hero highlights */
+.text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400;
+}
+
+/* ============================================
+   COUNTER/NUMBER STYLES
+   ============================================ */
+
+/* Counter Value */
+.text-counter {
+    @apply tabular-nums inline-flex items-center justify-center;
+}
+
+/* Counter Label */
+.text-counter-label {
+    @apply text-slate-400 text-sm font-medium;
+}
+
+/* ============================================
+   UTILITY CLASSES (for reference)
+   ============================================ */
+
+/* Font Weights */
+.font-black {
+    font-weight: 900;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+/* Line Heights */
+.leading-none {
+    line-height: 1;
+}
+
+.leading-relaxed {
+    line-height: 1.625;
+}
+
+/* Letter Spacing */
+.tracking-tight {
+    letter-spacing: -0.025em;
+}
+
+.tracking-wide {
+    letter-spacing: 0.025em;
+}
+
+.tracking-widest {
+    letter-spacing: 0.1em;
+}
+
+/* Text Colors */
+.text-white {
+    color: white;
+}
+
+.text-slate-100 {
+    color: rgb(241 245 249);
+}
+
+.text-slate-300 {
+    color: rgb(203 213 225);
+}
+
+.text-slate-400 {
+    color: rgb(148 163 184);
+}
+
+.text-violet-400 {
+    color: rgb(167 139 250);
+}
+
+.text-violet-500 {
+    color: rgb(139 92 246);
+}
+
+/* Background Clip for gradient text */
+.bg-clip-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.text-transparent {
+    color: transparent;
+}
+
+/* ============================================
+   COMPLETE CLASS COMBINATIONS (ready to use)
+   ============================================ */
+
+/* Hero main heading */
+.hero-heading {
+    font-family: "Outfit", "Inter", sans-serif;
+    font-size: 88px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: rgb(241 245 249);
+}
+
+/* Section heading */
+.section-heading {
+    font-family: "Outfit", "Inter", sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: white;
+}
+
+/* Subheading/accent */
+.subheading {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    color: rgb(167 139 250);
+}
+
+/* Body paragraph */
+.body-text {
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.625;
+    color: rgb(203 213 225);
+}
+
+/* Button text */
+.button-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+}

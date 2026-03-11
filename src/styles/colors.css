@@ -1,0 +1,284 @@
+/**
+ * Colors - Color palette for the portfolio
+ * 
+ * This file documents all colors used throughout the project.
+ * Based on Tailwind CSS with custom brand colors.
+ * 
+ * COLOR SYSTEM:
+ * - Background: Zinc (dark theme)
+ * - Text: Slate (gray scale)
+ * - Accent: Violet (primary brand color)
+ * - Secondary Accent: Fuchsia (gradient endpoint)
+ */
+
+/* ============================================
+   BACKGROUND COLORS
+   ============================================ */
+
+/* Main background - Dark zinc */
+.bg-primary {
+    background-color: rgb(9 9 11);
+    /* zinc-950 */
+}
+
+/* Header background with transparency */
+.bg-header {
+    background-color: rgb(9 9 11 / 0.8);
+    /* zinc-950/80 */
+}
+
+/* Overlay backgrounds */
+.bg-overlay {
+    background-color: rgb(0 0 0 / 0.7);
+    /* black/70 */
+}
+
+/* Gradient backgrounds */
+.bg-gradient-radial {
+    background: radial-gradient(circle_at_center, rgba(139, 92, 246, 0.12) 0%, rgba(9, 9, 11, 0) 60%);
+}
+
+.bg-gradient-to-t {
+    background: linear-gradient(to top, rgb(9 9 11), transparent);
+}
+
+/* ============================================
+   TEXT COLORS
+   ============================================ */
+
+/* Primary text - Almost white */
+.text-primary {
+    color: rgb(241 245 249);
+    /* slate-100 */
+}
+
+/* Secondary text - Muted gray */
+.text-secondary {
+    color: rgb(148 163 184);
+    /* slate-400 */
+}
+
+/* Tertiary text - Light gray */
+.text-tertiary {
+    color: rgb(203 213 225);
+    /* slate-300 */
+}
+
+/* Pure white */
+.text-white {
+    color: white;
+}
+
+/* ============================================
+   ACCENT COLORS - VIOLET
+   ============================================ */
+
+/* Violet accent - Primary */
+.color-accent {
+    color: rgb(139 92 246);
+    /* violet-500 */
+}
+
+/* Violet accent - Light */
+.color-accent-light {
+    color: rgb(167 139 250);
+    /* violet-400 */
+}
+
+/* Violet background */
+.bg-accent {
+    background-color: rgb(139 92 246);
+    /* violet-600 */
+}
+
+/* Violet background - Light */
+.bg-accent-light {
+    background-color: rgb(139 92 246 / 0.1);
+    /* violet-500/10 */
+}
+
+/* Violet border */
+.border-accent {
+    border-color: rgb(139 92 246 / 0.2);
+    /* violet-500/20 */
+}
+
+/* Violet border - Stronger */
+.border-accent-strong {
+    border-color: rgb(139 92 246 / 0.6);
+    /* violet-500/40 */
+}
+
+/* Violet glow/shadow */
+.shadow-accent {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+/* ============================================
+   ACCENT COLORS - FUCHSIA (for gradients)
+   ============================================ */
+
+/* Fuchsia accent */
+.color-fuchsia {
+    color: rgb(232 121 249);
+    /* fuchsia-400 */
+}
+
+/* Gradient: violet to fuchsia */
+.bg-gradient-violet-fuchsia {
+    background: linear-gradient(to right, rgb(139 92 246), rgb(232 121 249));
+}
+
+/* ============================================
+   BORDER COLORS
+   ============================================ */
+
+/* White border - Subtle */
+.border-subtle {
+    border-color: rgb(255 255 255 / 0.05);
+    /* white/5 */
+}
+
+/* White border - Light */
+.border-light {
+    border-color: rgb(255 255 255 / 0.1);
+    /* white/10 */
+}
+
+/* White border - Medium */
+.border-medium {
+    border-color: rgb(255 255 255 / 0.2);
+    /* white/20 */
+}
+
+/* White border - Strong */
+.border-strong {
+    border-color: rgb(255 255 255 / 0.4);
+    /* white/40 */
+}
+
+/* ============================================
+   HOVER STATES
+   ============================================ */
+
+/* Hover: White with transparency */
+.hover-bg-white {
+    background-color: rgb(255 255 255 / 0.1);
+    /* white/10 */
+}
+
+.hover-text-white {
+    color: white;
+}
+
+.hover-border-white {
+    border-color: white;
+}
+
+/* Hover: Violet accent */
+.hover-bg-accent {
+    background-color: rgb(139 92 246 / 0.2);
+    /* violet-500/20 */
+}
+
+/* ============================================
+   SELECTION COLOR
+   ============================================ */
+
+/* Selection highlight */
+.selection-accent {
+    background-color: rgb(139 92 246 / 0.3);
+    /* primary/30 */
+}
+
+/* ============================================
+   UTILITY COMBINATIONS (ready to use)
+   ============================================ */
+
+/* Header */
+.header-bg {
+    background-color: rgb(9 9 11 / 0.8);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgb(255 255 255 / 0.05);
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: rgb(139 92 246);
+    /* violet-600 */
+    border: 2px solid rgb(167 139 250);
+    /* violet-400 */
+    color: white;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: rgb(139 92 246 / 0.9);
+    transform: scale(1.05);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    border: 1px solid rgb(255 255 255 / 0.4);
+    color: rgb(203 213 225);
+    /* slate-300 */
+}
+
+.btn-secondary:hover {
+    background-color: rgb(255 255 255 / 0.1);
+    color: white;
+    border-color: white;
+}
+
+/* Tertiary Button */
+.btn-tertiary {
+    background-color: rgb(139 92 246 / 0.1);
+    border: 1px solid rgb(139 92 246 / 0.2);
+    color: rgb(139 92 246);
+}
+
+.btn-tertiary:hover {
+    background-color: rgb(139 92 246 / 0.2);
+}
+
+/* Card overlay gradient */
+.card-overlay {
+    background: linear-gradient(to top, rgb(9 9 11), rgb(9 9 11 / 0.5), transparent);
+}
+
+/* Badge/Tag */
+.badge {
+    background-color: rgb(139 92 246 / 0.1);
+    border: 1px solid rgb(139 92 246 / 0.2);
+    color: rgb(167 139 250);
+}
+
+/* Dot indicator */
+.dot-accent {
+    background-color: rgb(139 92 246);
+}
+
+/* ============================================
+   TAILWIND COLOR REFERENCE
+   ============================================ */
+
+/* 
+   zinc-950:  rgb(9 9 11)
+   zinc-900:  rgb(24 24 27)
+   zinc-800:  rgb(39 39 42)
+   
+   slate-100: rgb(241 245 249)
+   slate-200: rgb(226 232 240)
+   slate-300: rgb(203 213 225)
+   slate-400: rgb(148 163 184)
+   
+   violet-400: rgb(167 139 250)
+   violet-500: rgb(139 92 246)
+   violet-600: rgb(124 58 237)
+   
+   fuchsia-400: rgb(232 121 249)
+   fuchsia-500: rgb(217 70 239)
+   
+   black:      rgb(0 0 0)
+   white:      rgb(255 255 255)
+*/

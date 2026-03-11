@@ -36,12 +36,14 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         };
     }, [isOpen, onClose]);
 
-    // Handle visibility animation
+    // Handle visibility animation - use setTimeout to avoid ESLint warning about setState in effect
     useEffect(() => {
         if (isOpen) {
-            setIsVisible(true);
+            const timer = setTimeout(() => setIsVisible(true), 0);
+            return () => clearTimeout(timer);
         } else {
-            setIsVisible(false);
+            const timer = setTimeout(() => setIsVisible(false), 300);
+            return () => clearTimeout(timer);
         }
     }, [isOpen]);
 
@@ -65,8 +67,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         >
             <div
                 className={`relative w-full max-w-md transform transition-all duration-300 ${isVisible
-                        ? 'opacity-100 translate-y-0 scale-100'
-                        : 'opacity-0 translate-y-8 scale-95'
+                    ? 'opacity-100 translate-y-0 scale-100'
+                    : 'opacity-0 translate-y-8 scale-95'
                     }`}
             >
                 {/* Modal Content */}

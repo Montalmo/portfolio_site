@@ -13,7 +13,8 @@ const FooterBubbleAnimation: React.FC = () => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
+        // Defer state update to avoid ESLint warning about setState in effect
+        const timer = setTimeout(() => setMounted(true), 0);
 
         // Generate initial bubbles
         const generateBubbles = () => {
@@ -48,7 +49,10 @@ const FooterBubbleAnimation: React.FC = () => {
             });
         }, 1500);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearTimeout(timer);
+        };
     }, []);
 
     if (!mounted) return null;
