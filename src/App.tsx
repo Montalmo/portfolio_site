@@ -299,7 +299,7 @@ function App() {
           {!selectedCaseId && (
             <>
               {/* Hero Section */}
-              <section id="hero" className="relative flex flex-1 items-center justify-center px-6 py-20 pb-32">
+              <section id="hero" className="relative flex flex-1 items-center justify-center px-6 py-20 pb-32 max-[480px]:px-4 max-[480px]:py-14 max-[480px]:pb-28">
                 {/* Background Animation and Gradients */}
                 <FigmaSketchAnimation />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.12)_0%,rgba(9,9,11,0)_60%)] pointer-events-none"></div>
@@ -324,24 +324,24 @@ function App() {
                     <span className="text-xs font-bold tracking-widest uppercase text-violet-400 relative z-10">Відкритий до нових проєктів</span>
                   </div>
 
-                  <h1 className="text-slate-100 text-[88px] font-black leading-[1.1] tracking-tight font-display mb-8">
+                  <h1 className="text-slate-100 text-[88px] font-black leading-[1.1] tracking-tight font-display mb-8 max-[480px]:text-[56px]">
                     Створюю <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400">цифрові</span> <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400">продукти</span>, що <SwayingText text="мають" /> <br />
                     <SwayingText text="значення" />
                   </h1>
 
-                  <p className="text-slate-400 text-[18px] font-light leading-relaxed max-w-2xl mb-12">
+                  <p className="text-slate-400 text-[18px] font-light leading-relaxed max-w-2xl mb-12 max-[480px]:text-base">
                     Шукаю ідеальний баланс між естетикою та зручністю. Проєктую інтерфейси, які вирішують бізнес-задачі та закохують у себе користувачів.
                   </p>
 
-                  <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-                    <a href="#work" className="group flex min-w-[180px] cursor-pointer items-center justify-center gap-2 rounded-full h-14 px-8 bg-violet-600 text-white text-base font-bold transition-all hover:scale-105 hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                  <div className="flex flex-col sm:flex-row gap-5 items-center justify-center w-full">
+                    <a href="#work" className="group flex cursor-pointer items-center justify-center gap-2 rounded-full h-14 px-8 bg-violet-600 text-white text-base font-bold transition-all hover:scale-105 hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)] max-[480px]:w-full max-[480px]:min-w-full">
                       <span>Мої роботи</span>
                       <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </a>
                     <button
                       onClick={openModal}
-                      className="flex min-w-[180px] cursor-pointer items-center justify-center rounded-full h-14 px-8 border border-white/10 text-slate-300 text-base font-bold transition-all hover:bg-white/5 hover:text-white">
+                      className="flex cursor-pointer items-center justify-center rounded-full h-14 px-8 border border-white/10 text-slate-300 text-base font-bold transition-all hover:bg-white/5 hover:text-white max-[480px]:w-full max-[480px]:min-w-full">
                       <span>Зв'язатися</span>
                     </button>
                   </div>
