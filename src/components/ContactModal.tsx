@@ -1,14 +1,23 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { contactMethods } from '../data/projects';
 
 interface ContactModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
+/**
+ * ContactModal - Modal for displaying contact options
+ * 
+ * IMPROVEMENTS:
+ * 1. Uses external contactMethods data (DIP)
+ * 2. Proper cleanup of event listeners
+ * 3. Uses useCallback for stable function references
+ */
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
 
-    // Handle escape key to close modal
+    // Handle escape key and body scroll lock
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -27,7 +36,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         };
     }, [isOpen, onClose]);
 
-    // Animate in
+    // Handle visibility animation
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true);
@@ -41,29 +50,6 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
             onClose();
         }
     }, [onClose]);
-
-    const contactMethods = [
-        {
-            name: 'Telegram',
-            icon: 'send',
-            href: 'https://t.me/yourusername',
-        },
-        {
-            name: 'Viber',
-            icon: 'chat',
-            href: 'viber://chat?number=yournumber',
-        },
-        {
-            name: 'WhatsApp',
-            icon: 'call',
-            href: 'https://wa.me/yournumber',
-        },
-        {
-            name: 'Телефон',
-            icon: 'phone',
-            href: 'tel:+380000000000',
-        }
-    ];
 
     if (!isOpen && !isVisible) return null;
 
@@ -79,8 +65,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         >
             <div
                 className={`relative w-full max-w-md transform transition-all duration-300 ${isVisible
-                    ? 'opacity-100 translate-y-0 scale-100'
-                    : 'opacity-0 translate-y-8 scale-95'
+                        ? 'opacity-100 translate-y-0 scale-100'
+                        : 'opacity-0 translate-y-8 scale-95'
                     }`}
             >
                 {/* Modal Content */}
@@ -93,7 +79,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                         <span className="material-symbols-outlined text-xl">close</span>
                     </button>
 
-                    {/* Contact Buttons */}
+                    {/* Contact Buttons - now using external data */}
                     <div className="flex flex-wrap justify-center gap-4">
                         {contactMethods.map((method) => (
                             <a
@@ -101,7 +87,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                                 href={method.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-[140px] flex items-center justify-center gap-2 rounded-full h-12 px-4 border border-white/10 bg-white/5 text-slate-300 text-base font-bold transition-all hover:bg-white/10 hover:text-white"
+                                className="w-[140px] flex items-center justify-center gap-2 rounded-full h-12 px-4 border-2 border-white/50 bg-white/5 text-slate-300 text-base font-bold transition-all hover:bg-white/10 hover:text-white hover:border-violet-400"
                             >
                                 <span className="material-symbols-outlined text-xl text-violet-500">
                                     {method.icon}

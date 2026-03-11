@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import saLogo from '../assets/sa_logo.svg';
+import Lightbox from './Lightbox';
 
 interface CaseStudyProps {
     project: {
@@ -19,88 +20,18 @@ interface CaseStudyProps {
     onOpenContact?: () => void;
 }
 
-// Lightbox Modal Component (reusing ContactModal pattern)
-interface LightboxProps {
-    isOpen: boolean;
-    imageSrc: string;
-    onClose: () => void;
-}
-
-const Lightbox: React.FC<LightboxProps> = ({ isOpen, imageSrc, onClose }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                onClose();
-            }
-        };
-
-        if (isOpen) {
-            document.addEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'hidden';
-        }
-
-        return () => {
-            document.removeEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen, onClose]);
-
-    useEffect(() => {
-        if (isOpen) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
-    }, [isOpen]);
-
-    const handleOverlayClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    }, [onClose]);
-
-    if (!isOpen && !isVisible) return null;
-
-    return (
-        <div
-            className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-300 ${isVisible ? 'bg-black/90 backdrop-blur-sm' : 'bg-black/0 pointer-events-none'
-                }`}
-            onClick={handleOverlayClick}
-            style={{
-                opacity: isVisible ? 1 : 0,
-                pointerEvents: isVisible ? 'auto' : 'none'
-            }}
-        >
-            <button
-                onClick={onClose}
-                className="absolute top-4 right-4 size-10 flex items-center justify-center rounded-full border border-white/10 text-slate-400 transition-all hover:bg-white/10 hover:text-white z-10"
-            >
-                <span className="material-symbols-outlined text-xl">close</span>
-            </button>
-
-            <div
-                className={`relative transform transition-all duration-300 ${isVisible
-                    ? 'opacity-100 scale-100'
-                    : 'opacity-0 scale-95'
-                    }`}
-            >
-                <img
-                    src={imageSrc}
-                    alt="Gallery image"
-                    className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
-                />
-            </div>
-        </div>
-    );
-};
-
+/**
+ * CaseStudy - Displays detailed project case study
+ * 
+ * IMPROVEMENTS:
+ * 1. Lightbox now imported from separate file (SRP)
+ * 2. Cleaner component structure
+ */
 const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNavigate, onBack, onOpenContact }) => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxImage, setLightboxImage] = useState('');
 
-    // Default gallery images if not provided - use placeholders
+    // Default gallery images if not provided
     const galleryImages = project.gallery || [
         'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
         'https://images.unsplash.com/photo-1618172193622-ae2d025f4032?w=800&q=80',
@@ -225,6 +156,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                                         <img
                                             src={image}
                                             alt={`Gallery image ${index + 1}`}
+                                            loading="lazy"
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
                                         {/* Hover Overlay */}
@@ -275,18 +207,18 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                     </section>
                 </main>
 
-                {/* Footer - Using main page footer */}
-                <footer className="w-full bg-zinc-950 border-t border-white/5 pt-20 pb-12">
+                {/* Footer */}
+                <footer className="w-full bg-zinc-950 border-t border-white/5 pt-8 pb-8 md:pt-20 md:pb-12">
                     <div className="max-w-[1240px] mx-auto px-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-center">
-                            <div className="flex justify-start">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:mb-16 items-center">
+                            <div className="flex justify-center md:justify-start">
                                 <div className="flex items-center gap-2 text-slate-400">
                                     <span className="material-symbols-outlined text-violet-500">location_on</span>
                                     <span className="font-medium">Харків, Україна</span>
                                 </div>
                             </div>
 
-                            <div className="flex justify-center items-center gap-6 md:gap-8 flex-wrap">
+                            <div className="flex justify-center items-center gap-4 md:gap-8">
                                 <a className="group flex items-center gap-2 text-slate-300 hover:text-violet-500 transition-colors font-medium" href="#">
                                     <span className="material-symbols-outlined text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all">language</span>
                                     Dribbble
@@ -301,7 +233,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                                 </a>
                             </div>
 
-                            <div className="flex justify-end">
+                            <div className="flex justify-center md:justify-end">
                                 <button
                                     onClick={onBack}
                                     className="size-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-violet-500 hover:border-violet-500 transition-all active:scale-90"
@@ -322,7 +254,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, prevCase, nextCase, onNa
                 </footer>
             </div>
 
-            {/* Lightbox Modal */}
+            {/* Lightbox Modal - Now imported from separate file */}
             <Lightbox
                 isOpen={lightboxOpen}
                 imageSrc={lightboxImage}
