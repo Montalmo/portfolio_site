@@ -247,7 +247,7 @@ function App() {
                 <span>Співпраця</span>
               </button>
             </nav>
-            <div className="md:hidden cursor-pointer" onClick={toggleMobileMenu}>
+            <div className="md:hidden cursor-pointer flex items-center justify-center" onClick={toggleMobileMenu}>
               <span className="material-symbols-outlined text-slate-100">{isMobileMenuOpen ? 'close' : 'menu'}</span>
             </div>
           </div>
@@ -349,145 +349,143 @@ function App() {
               </section>
 
               {/* About Section */}
-              <ScrollAnimationBlock>
-                <section id="about" className="relative px-6 md:px-12 py-24 w-full">
-                  <div className="max-w-[1240px] mx-auto flex flex-col gap-20">
-                    {/* Title Section */}
-                    <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 gap-4">
-                      <h2 className="text-white text-[64px] font-display font-black leading-none tracking-tight">Про мене</h2>
-                      <p className="text-violet-400 text-lg md:text-xl font-medium tracking-wide uppercase">UI/UX Дизайнер з України</p>
-                    </div>
-
-                    {/* Two-Column Layout: Philosophy + Stats */}
-                    <div className="flex flex-col gap-16 lg:gap-20 items-center">
-                      {/* Two Columns with Text */}
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 w-full">
-                        {/* Left Column */}
-                        <div className="flex flex-col gap-6">
-                          <p className="text-slate-300 text-lg md:text-xl leading-relaxed">
-                            Мій підхід базується на системному мисленні та глибокій аналітиці бізнес-процесів. Я вірю, що в складних SaaS-продуктах кожен піксель має працювати на ефективність, а кожен інтерфейсний перехід — спрощувати шлях користувача до результату.
-                          </p>
-                        </div>
-
-                        {/* Right Column */}
-                        <div className="flex flex-col gap-6">
-                          <p className="text-slate-300 text-lg leading-relaxed">
-                            Я спеціалізуюся на створенні інтерфейсів, які не лише виглядають сучасно, а й вирішують реальні завдання великого бізнесу. Моя мета — зробити взаємодію з важкими масивами даних та багатоетапними процесами безшовною, інтуїтивною та результативною.
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Numbers Block */}
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
-                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
-                            <Counter end={9} suffix="+" />
-                          </p>
-                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Років досвіду</p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
-                            <Counter end={50} suffix="+" />
-                          </p>
-                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Проєктів</p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
-                            <Counter start={100} end={0} suffix="%" />
-                          </p>
-                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Хаосу</p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
-                          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] font-display font-black text-center tracking-wider">
-                            <Counter end={100} suffix="%" />
-                          </p>
-                          <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Якість</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Expertise Cards — horizontal row of 4 below Philosophy+Stats */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
-                        <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">psychology</span>
-                        <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">Емпатія</h4>
-                          <p className="text-slate-400 text-sm leading-relaxed">Глибоке розуміння користувача — фундамент кожного успішного проекту.</p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
-                        <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">database</span>
-                        <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">SaaS та Product Design</h4>
-                          <p className="text-slate-400 text-sm leading-relaxed">Проєктування CRM/ERP систем з нуля, робота з великими даними та складною логікою ролей.</p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
-                        <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">account_tree</span>
-                        <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">UX-архітектура</h4>
-                          <p className="text-slate-400 text-sm leading-relaxed">Створюю інтуїтивні сценарії для складних процесів (multi-step flows, верифікація, аукціони).</p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
-                        <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 relative z-10">palette</span>
-                        <div className="flex flex-col gap-4">
-                          <h4 className="text-white text-lg font-bold">Візуальна айдентика</h4>
-                          <p className="text-slate-400 text-sm leading-relaxed">Підсилюю продукти досвідом у брендингу, забезпечуючи цілісний образ бренду.</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Tools Section */}
-                    <div className="flex flex-col gap-10">
-                      <div className="flex flex-col gap-2 items-center">
-                        <h3 className="text-white text-3xl font-display font-bold">Інструменти та Технології</h3>
-                        <div className="h-1 w-20 bg-violet-500 rounded-full"></div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-3 justify-center">
-                        {[
-                          { name: "Figma", icon: "diamond" },
-                          { name: "Adobe Photoshop", icon: "photo_filter" },
-                          { name: "Adobe Illustrator", icon: "draw" },
-                          { name: "Miro", icon: "sticky_note_2" },
-                          { name: "Adobe Lightroom", icon: "exposure" },
-                          { name: "Creative Direction", icon: "movie_filter" },
-                          { name: "Technical Specification Writing", icon: "description" },
-                          { name: "Stakeholder Management", icon: "groups" },
-                          { name: "Cross-functional Team Collaboration", icon: "hub" },
-                          { name: "Responsive Web Design", icon: "devices" },
-                          { name: "Design-to-Development Handoff", icon: "code_blocks" },
-                          { name: "Auto Layout & Components", icon: "widgets" },
-                          { name: "Prototyping (Advanced)", icon: "animation" },
-                          { name: "User Research & Competitor Analysis", icon: "analytics" },
-                          { name: "Rapid Prototyping", icon: "bolt" },
-                          { name: "UX Strategy", icon: "architecture" },
-                          { name: "Design Systems", icon: "category" },
-                          { name: "Product Design", icon: "layers" }
-                        ].map((tool) => (
-                          <div key={tool.name} className="flex items-center gap-2.5 px-5 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-violet-500/20 hover:border-violet-500 transition-all cursor-default group">
-                            <span className="material-symbols-outlined text-slate-400 group-hover:text-violet-500 transition-colors text-xl">{tool.icon}</span>
-                            <span className="text-slate-300 font-medium group-hover:text-white transition-colors text-sm">{tool.name}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
+              <section id="about" className="relative px-6 md:px-12 py-24 max-[480px]:px-4 max-[480px]:py-14 w-full">
+                <div className="max-w-[1240px] mx-auto flex flex-col gap-20 max-[480px]:gap-8">
+                  {/* Title Section */}
+                  <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 max-[480px]:pb-6 gap-4">
+                    <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black leading-none tracking-tight">Про мене</h2>
+                    <p className="text-violet-400 text-lg md:text-xl max-[480px]:text-base font-medium tracking-wide uppercase">UI/UX Дизайнер з України</p>
                   </div>
-                </section>
-              </ScrollAnimationBlock>
+
+                  {/* Two-Column Layout: Philosophy + Stats */}
+                  <div className="flex flex-col gap-16 lg:gap-20 max-[480px]:gap-6 items-center">
+                    {/* Two Columns with Text */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-[480px]:gap-4 w-full">
+                      {/* Left Column */}
+                      <div className="flex flex-col gap-6 max-[480px]:gap-4">
+                        <p className="text-slate-300 text-lg md:text-xl max-[480px]:text-sm leading-relaxed">
+                          Мій підхід базується на системному мисленні та глибокій аналітиці бізнес-процесів. Я вірю, що в складних SaaS-продуктах кожен піксель має працювати на ефективність, а кожен інтерфейсний перехід — спрощувати шлях користувача до результату.
+                        </p>
+                      </div>
+
+                      {/* Right Column */}
+                      <div className="flex flex-col gap-6 max-[480px]:gap-4">
+                        <p className="text-slate-300 text-lg max-[480px]:text-sm leading-relaxed">
+                          Я спеціалізуюся на створенні інтерфейсів, які не лише виглядають сучасно, а й вирішують реальні завдання великого бізнесу. Моя мета — зробити взаємодію з важкими масивами даних та багатоетапними процесами безшовною, інтуїтивною та результативною.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Numbers Block */}
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl w-full mx-auto justify-items-center items-center">
+                      <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] max-[480px]:text-[48px] font-display font-black text-center tracking-wider">
+                          <Counter end={9} suffix="+" />
+                        </p>
+                        <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Років досвіду</p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] max-[480px]:text-[48px] font-display font-black text-center tracking-wider">
+                          <Counter end={50} suffix="+" />
+                        </p>
+                        <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Проєктів</p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] max-[480px]:text-[48px] font-display font-black text-center tracking-wider">
+                          <Counter start={100} end={0} suffix="%" />
+                        </p>
+                        <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Хаосу</p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center gap-2 rounded-2xl p-8 aspect-square lg:aspect-auto lg:h-48 group hover:bg-violet-500/5 transition-all w-full">
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-400 text-[72px] md:text-[72px] max-[480px]:text-[48px] font-display font-black text-center tracking-wider">
+                          <Counter end={100} suffix="%" />
+                        </p>
+                        <p className="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest text-center">Якість</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Expertise Cards — horizontal row of 4 below Philosophy+Stats */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 max-[480px]:gap-2">
+                    <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 max-[480px]:p-4 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                      <div className="max-[480px]:flex max-[480px]:items-center max-[480px]:gap-2 max-[480px]:mb-2">
+                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 max-[480px]:mb-0 relative z-10">psychology</span>
+                        <h4 className="text-white text-lg font-bold">Емпатія</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed">Глибоке розуміння користувача — фундамент кожного успішного проекту.</p>
+                    </div>
+                    <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 max-[480px]:p-4 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                      <div className="max-[480px]:flex max-[480px]:items-center max-[480px]:gap-2 max-[480px]:mb-2">
+                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 max-[480px]:mb-0 relative z-10">database</span>
+                        <h4 className="text-white text-lg font-bold">SaaS та Product Design</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed">Проєктування CRM/ERP систем з нуля, робота з великими даними та складною логікою ролей.</p>
+                    </div>
+                    <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 max-[480px]:p-4 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                      <div className="max-[480px]:flex max-[480px]:items-center max-[480px]:gap-2 max-[480px]:mb-2">
+                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 max-[480px]:mb-0 relative z-10">account_tree</span>
+                        <h4 className="text-white text-lg font-bold">UX-архітектура</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed">Створюю інтуїтивні сценарії для складних процесів (multi-step flows, верифікація, аукціони).</p>
+                    </div>
+                    <div className="flex flex-col rounded-xl border border-white/5 bg-white/[0.03] p-6 max-[480px]:p-4 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.08)] transition-all group relative overflow-hidden">
+                      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-16 h-16 rounded-xl bg-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                      <div className="max-[480px]:flex max-[480px]:items-center max-[480px]:gap-2 max-[480px]:mb-2">
+                        <span className="material-symbols-outlined text-violet-500 text-3xl mb-10 max-[480px]:mb-0 relative z-10">palette</span>
+                        <h4 className="text-white text-lg font-bold">Візуальна айдентика</h4>
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed">Підсилюю продукти досвідом у брендингу, забезпечуючи цілісний образ бренду.</p>
+                    </div>
+                  </div>
+
+                  {/* Tools Section */}
+                  <div className="flex flex-col gap-10 max-[480px]:gap-8">
+                    <div className="flex flex-col gap-2 items-center">
+                      <h3 className="text-white text-3xl max-[480px]:text-2xl font-display font-bold">Інструменти та Технології</h3>
+                      <div className="h-1 w-20 bg-violet-500 rounded-full"></div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 justify-center max-[480px]:flex-col max-[480px]:w-full max-[480px]:gap-1">
+                      {[
+                        { name: "Figma", icon: "diamond" },
+                        { name: "Adobe Photoshop", icon: "photo_filter" },
+                        { name: "Adobe Illustrator", icon: "draw" },
+                        { name: "Miro", icon: "sticky_note_2" },
+                        { name: "Adobe Lightroom", icon: "exposure" },
+                        { name: "Creative Direction", icon: "movie_filter" },
+                        { name: "Technical Specification Writing", icon: "description" },
+                        { name: "Stakeholder Management", icon: "groups" },
+                        { name: "Cross-functional Team Collaboration", icon: "hub" },
+                        { name: "Responsive Web Design", icon: "devices" },
+                        { name: "Design-to-Development Handoff", icon: "code_blocks" },
+                        { name: "Auto Layout & Components", icon: "widgets" },
+                        { name: "Prototyping (Advanced)", icon: "animation" },
+                        { name: "User Research & Competitor Analysis", icon: "analytics" },
+                        { name: "Rapid Prototyping", icon: "bolt" },
+                        { name: "UX Strategy", icon: "architecture" },
+                        { name: "Design Systems", icon: "category" },
+                        { name: "Product Design", icon: "layers" }
+                      ].map((tool) => (
+                        <div key={tool.name} className="flex items-center gap-2.5 px-5 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-violet-500/20 hover:border-violet-500 transition-all cursor-default group max-[480px]:w-full max-[480px]:justify-start">
+                          <span className="material-symbols-outlined text-slate-400 group-hover:text-violet-500 transition-colors text-xl">{tool.icon}</span>
+                          <span className="text-slate-300 font-medium group-hover:text-white transition-colors text-sm">{tool.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </section>
 
               {/* Portfolio Section - Simple Grid */}
-              <section id="work" className="relative px-6 md:px-12 py-24 w-full">
-                <div className="max-w-[1240px] mx-auto flex flex-col gap-16">
-                  <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 gap-4">
-                    <h2 className="text-white text-[64px] font-display font-black leading-none tracking-tight">Мої проєкти</h2>
-                    <p className="text-violet-400 text-lg md:text-xl font-medium tracking-wide uppercase">Добірка найкращих моїх рішень</p>
+              <section id="work" className="relative px-6 md:px-12 py-24 max-[480px]:px-4 max-[480px]:py-14 w-full">
+                <div className="max-w-[1240px] mx-auto flex flex-col gap-16 max-[480px]:gap-8">
+                  <div className="flex flex-col md:flex-row md:items-baseline justify-between w-full border-b border-white/5 pb-8 max-[480px]:pb-6 gap-4">
+                    <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black leading-none tracking-tight">Мої проєкти</h2>
+                    <p className="text-violet-400 text-lg md:text-xl max-[480px]:text-base font-medium tracking-wide uppercase">Добірка найкращих моїх рішень</p>
                   </div>
 
                   {/* Simple 2-Column Grid Layout */}
@@ -525,7 +523,7 @@ function App() {
 
               {/* Contact Section */}
               <ScrollAnimationBlock delay={0.4}>
-                <section id="contact" className="relative w-full px-6 py-24 md:py-32 min-h-screen flex flex-col items-center justify-center overflow-hidden">
+                <section id="contact" className="relative w-full px-6 py-24 md:py-32 max-[480px]:px-4 max-[480px]:py-14 min-h-screen flex flex-col items-center justify-center overflow-hidden">
                   <FooterBubbleAnimation />
                   {/* Background Gradient Effect */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.12)_0%,rgba(9,9,11,0)_60%)] pointer-events-none"></div>
@@ -533,14 +531,14 @@ function App() {
                   <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none"></div>
 
                   <div className="max-w-[1240px] w-full mx-auto text-center z-10">
-                    <h2 className="text-white text-[64px] font-display font-black mb-8 tracking-tight leading-tight">
+                    <h2 className="text-white text-[64px] max-[480px]:text-[48px] font-display font-black mb-8 tracking-tight leading-tight">
                       Маєте ідею для проєкту?
                     </h2>
-                    <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+                    <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed max-[480px]:text-sm">
                       Давайте разом створимо щось надзвичайне. Я завжди відкритий до нових викликів та цікавих колаборацій.
                     </p>
-                    <div className="flex justify-center">
-                      <button onClick={openModal} className="group flex min-w-[180px] cursor-pointer items-center justify-center gap-2 rounded-full h-14 px-8 bg-violet-600 text-white text-base font-bold transition-all hover:scale-105 hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                    <div className="flex justify-center max-[480px]:w-full">
+                      <button onClick={openModal} className="group flex min-w-[180px] cursor-pointer items-center justify-center gap-2 rounded-full h-14 px-8 bg-violet-600 text-white text-base font-bold transition-all hover:scale-105 hover:bg-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.3)] max-[480px]:w-full">
                         <span>Написати мені</span>
                         <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
                       </button>
@@ -604,16 +602,18 @@ function App() {
       <ContactModal isOpen={isModalOpen} onClose={closeModal} />
 
       {/* Case Study Page */}
-      {currentCase && (
-        <CaseStudy
-          project={currentCase}
-          prevCase={prevCase}
-          nextCase={nextCase}
-          onNavigate={handleOpenCase}
-          onBack={handleCloseCase}
-          onOpenContact={openModal}
-        />
-      )}
+      {
+        currentCase && (
+          <CaseStudy
+            project={currentCase}
+            prevCase={prevCase}
+            nextCase={nextCase}
+            onNavigate={handleOpenCase}
+            onBack={handleCloseCase}
+            onOpenContact={openModal}
+          />
+        )
+      }
     </div >
   )
 }
