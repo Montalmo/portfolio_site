@@ -156,9 +156,13 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedCaseId, setSelectedCaseId] = useState<number | null>(null)
   const [activeSection, setActiveSection] = useState('hero')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+  const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
   // Handle case study navigation
   const handleOpenCase = (caseId: number) => {
@@ -221,14 +225,14 @@ function App() {
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-zinc-950 text-slate-100 antialiased font-sans">
       <div className="layout-container flex h-full grow flex-col">
         {/* Navigation Header */}
-        <header className="fixed top-0 left-0 w-full h-20 bg-zinc-950/80 backdrop-blur-lg z-50 border-b border-white/5 flex justify-center">
-          <div className="w-full max-w-[1240px] flex items-center justify-between">
+        <header className="fixed top-0 left-0 w-full h-16 md:h-20 bg-zinc-950/80 backdrop-blur-lg z-50 border-b border-white/5 flex justify-center">
+          <div className="w-full max-w-[1240px] flex items-center justify-between px-4 md:px-0">
             <div className="flex items-center gap-2">
               <a href="#hero" className="flex items-center gap-2 cursor-pointer">
                 <img
                   src={saLogo}
                   alt="ELARA"
-                  className="h-10 w-auto"
+                  className="h-8 md:h-10 w-auto"
                 />
               </a>
             </div>
@@ -243,13 +247,54 @@ function App() {
                 <span>Співпраця</span>
               </button>
             </nav>
-            <div className="md:hidden">
-              <span className="material-symbols-outlined text-slate-100">menu</span>
+            <div className="md:hidden cursor-pointer" onClick={toggleMobileMenu}>
+              <span className="material-symbols-outlined text-slate-100">{isMobileMenuOpen ? 'close' : 'menu'}</span>
             </div>
           </div>
         </header>
 
-        <main className="flex-1 w-full flex flex-col items-center justify-center pt-20">
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 top-16 md:top-20 left-0 w-full h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] bg-zinc-950/90 backdrop-blur-lg z-40 md:hidden">
+            <nav className="flex flex-col items-center justify-center gap-8 h-full">
+              <a
+                onClick={closeMobileMenu}
+                className={`text-2xl font-medium transition-colors ${activeSection === 'hero' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`}
+                href="#hero"
+              >
+                Головна
+              </a>
+              <a
+                onClick={closeMobileMenu}
+                className={`text-2xl font-medium transition-colors ${activeSection === 'about' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`}
+                href="#about"
+              >
+                Про мене
+              </a>
+              <a
+                onClick={closeMobileMenu}
+                className={`text-2xl font-medium transition-colors ${activeSection === 'work' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`}
+                href="#work"
+              >
+                Роботи
+              </a>
+              <a
+                onClick={closeMobileMenu}
+                className={`text-2xl font-medium transition-colors ${activeSection === 'contact' ? 'text-violet-400' : 'text-slate-400 hover:text-white'}`}
+                href="#contact"
+              >
+                Контакти
+              </a>
+              <button
+                onClick={() => { closeMobileMenu(); openModal(); }}
+                className="flex min-w-[140px] cursor-pointer items-center justify-center rounded-full h-12 px-8 bg-violet-500/10 border border-violet-500/20 text-violet-500 text-base font-bold transition-all hover:bg-violet-500/20 mt-4">
+                <span>Співпраця</span>
+              </button>
+            </nav>
+          </div>
+        )}
+
+        <main className={`flex-1 w-full flex flex-col items-center justify-center pt-16 md:pt-20 ${isMobileMenuOpen ? 'pt-36 md:pt-20' : ''}`}>
           {/* Show main page content only when no case is selected */}
           {!selectedCaseId && (
             <>
